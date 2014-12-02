@@ -9,28 +9,26 @@
         var deps = [];
 
         var that = {
+            fn: fn,
             flush: function() {
                 if(_.some(deps, _.property('invalid'))) {
-                    runContext({});
+                    that.run({});
                 }
             },
             addDependency: function(dep) {
                 deps.indexOf(dep) === -1 && deps.push(dep);
+            },
+            run: function(opts) {
+                if(currentContext !== that) {
+                    deps = [];
+                    var prevContext = currentContext;
+                    currentContext = that;
+                    fn(opts);
+                    currentContext = prevContext;
+                }
             }
         };
-        runContext({firstRun:true});
-        contextList.push(that);
-
-
-        function runContext(opts) {
-            if(currentContext !== that) {
-                deps = [];
-                var prevContext = currentContext;
-                currentContext = that;
-                fn(opts);
-                currentContext = prevContext;
-            }
-        }
+        return that;
     }
 
     Context.flush = function() {
@@ -149,6 +147,13 @@
     }
 
     global.Autorun = function (fn) {
-        Context(fn);
-    };
+        var ctx = _.find(contextList, {fn: fn});
+        if(ctx) {
+            ctx.run({});
+        } else {
+            ctx = Context(fn);
+            ctx.run({firstRun:true});
+            contextList.push(ctx);
+        }
+    }
 }(this));
