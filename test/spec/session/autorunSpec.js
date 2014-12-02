@@ -76,12 +76,12 @@ describe('autorun', function() {
         expect(value).toBe('zzz');
     });
 
-    describe('nested autorun behavior', function () {
+    describe('nested autoruns', function () {
         var innerSpy, outerSpy, outerKey, innerKey, afterKey;
         
         beforeEach(function() {
-            outerKey = _.uniqueId();
             innerKey = _.uniqueId();
+            outerKey = _.uniqueId();
             afterKey = _.uniqueId();
 
             innerSpy = jasmine.createSpy('inner autorun').and.callFake(_.partial(Session.get, innerKey));
