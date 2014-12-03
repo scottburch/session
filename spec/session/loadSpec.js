@@ -16,7 +16,7 @@ describe('load()', function() {
     });
 
     it('should fire Autorun blocks', function() {
-        var spy = jasmine.createSpy().and.callFake(_.fn(Session.get, 'foo'));
+        var spy = jasmine.createSpy().and.callFake(_.partial(Session.get, 'foo'));
         Autorun(spy);
 
         expect(spy.calls.count()).toBe(1);

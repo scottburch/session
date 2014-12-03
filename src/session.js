@@ -59,7 +59,7 @@
         set: function (key, val) {
             var obj = getFromDict(key);
             obj.value = val;
-            var deps = obj.deps.slice(0);
+            var deps = obj.deps;
             obj.deps=[];
             _.each(deps, function(dep) {dep.changed()});
         },
