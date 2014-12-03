@@ -77,8 +77,8 @@
         setProp: _.autocurry(function (key, propName, value) {
             var obj = getFromDict(key);
             obj.value || (obj.value = {});
-            _.setProp(obj, propName, value);
-            Session.set(key, obj);
+            _.setProp(obj.value, propName, value);
+            Session.set(key, obj.value);
         }),
         isPropDefined: function(key, propName) {
             return Session.getProp(key, propName) !== undefined;
