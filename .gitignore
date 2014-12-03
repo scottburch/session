@@ -1,2 +1,5 @@
 # Created by .gitignore support plugin (hsz.mobi)
-session.ipr
+*.iws
+/build
+/.grunt
+/node_modules
