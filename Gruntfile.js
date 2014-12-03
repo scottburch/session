@@ -17,19 +17,16 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-//            build: {
-//                src: 'src/<%= pkg.name %>.js',
-//                dest: 'build/<%= pkg.name %>.min.js'
-//            }
         },
         jasmine: {
             pivotal: {
-                src: 'src/**/*.js',
+                src: ['src/session.js', 'src/session.builder.js'],
                 options: {
-                    specs: 'spec/*Spec.js',
+                    specs: 'spec/**/*Spec.js',
                     helpers: 'spec/*Helper.js',
                     vendor: [
-                        "vendor/*.js"
+                        "vendor/*.js",
+                        'vendor/underscore-fn/src/*.js'
                     ]
                 }
             }
