@@ -19,13 +19,13 @@
                 deps.indexOf(dep) === -1 && deps.push(dep);
             },
             run: function(opts) {
-                if(currentContext !== that) {
+//                if(currentContext !== that) {
                     deps = [];
                     var prevContext = currentContext;
                     currentContext = that;
                     fn(opts);
                     currentContext = prevContext;
-                }
+//                }
             }
         };
         return that;
@@ -40,7 +40,6 @@
             changed: function() {
                 that.invalid = true;
                 Context.flush();
-                that.invalid = false;
             },
             depend: function() {
                 currentContext && currentContext.addDependency(that);
@@ -52,7 +51,7 @@
 
     function getFromDict(key, def) {
         var obj = dict[key] || (dict[key] = {value:def});
-        obj.dep = obj.dep || Dependency();
+        obj.deps = obj.deps || [];
         return obj;
     }
 
@@ -60,11 +59,15 @@
         set: function (key, val) {
             var obj = getFromDict(key);
             obj.value = val;
-            obj.dep.changed();
+            var deps = obj.deps.slice(0);
+            obj.deps=[];
+            _.each(deps, function(dep) {dep.changed()});
         },
         get: function (key) {
             var obj = getFromDict(key);
-            obj.dep.depend();
+            var dep = Dependency();
+            dep.depend();
+            obj.deps.push(dep);
             return obj.value;
         },
         getProp: _.autocurry(function (key, propName) {
