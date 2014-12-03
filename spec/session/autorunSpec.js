@@ -5,7 +5,7 @@ describe('autorun', function() {
         var c1spy = jasmine.createSpy();
         var c2spy = jasmine.createSpy();
         var key = _.uniqueId();
-        var stop;
+        var stop = false;
 
         Autorun(function() {
             c1spy();

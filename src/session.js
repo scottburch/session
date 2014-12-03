@@ -32,7 +32,7 @@
     }
 
     Context.flush = function() {
-        _.each(contextList, _.callMethod('flush'));
+        _.each(contextList, _fn.exec('flush'));
     };
 
     function Dependency() {
@@ -70,14 +70,14 @@
             obj.deps.push(dep);
             return obj.value;
         },
-        getProp: _.autocurry(function (key, propName) {
+        getProp: _.curry(function (key, propName) {
             var obj = Session.get(key);
-            return obj ? _.prop(obj, propName) : undefined;
+            return obj ? _fn.prop(propName, obj) : undefined;
         }),
-        setProp: _.autocurry(function (key, propName, value) {
+        setProp: _.curry(function (key, propName, value) {
             var obj = getFromDict(key);
             obj.value || (obj.value = {});
-            _.setProp(obj.value, propName, value);
+            _fn.setProp(propName, obj.value, value);
             Session.set(key, obj.value);
         }),
         isPropDefined: function(key, propName) {

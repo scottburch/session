@@ -23,6 +23,9 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{session node_modules}" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/session.iml" filepath="$PROJECT_DIR$/session.iml" />
@@ -34,5 +37,20 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/underscore-fn" vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="session node_modules" type="javaScript">
+      <properties>
+        <option name="frameworkName" value="node_modules" />
+        <sourceFilesUrls>
+          <item url="file://$PROJECT_DIR$/node_modules" />
+        </sourceFilesUrls>
+      </properties>
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/node_modules" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
   </component>
 </project>
