@@ -36,7 +36,6 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/underscore-fn" vcs="Git" />
   </component>
   <component name="libraryTable">
     <library name="session node_modules" type="javaScript">

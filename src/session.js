@@ -72,7 +72,7 @@
         },
         getProp: _.curry(function (key, propName) {
             var obj = Session.get(key);
-            return obj ? _fn.prop(propName, obj) : undefined;
+            return obj ? _fn.dot(propName, obj) : undefined;
         }),
         setProp: _.curry(function (key, propName, value) {
             var obj = getFromDict(key);
