@@ -11,9 +11,7 @@
         var that = {
             fn: fn,
             flush: function() {
-                if(_.some(deps, _.property('invalid'))) {
-                    that.run({});
-                }
+                _.some(deps, _fn.dot('invalid')) && that.run({});
             },
             addDependency: function(dep) {
                 deps.indexOf(dep) === -1 && deps.push(dep);
@@ -32,7 +30,7 @@
     }
 
     Context.flush = function() {
-        _.each(contextList, _fn.exec('flush'));
+        _fn.fmap(_fn.exec('flush'), contextList);
     };
 
     function Dependency() {
@@ -50,9 +48,7 @@
 
 
     function getFromDict(key, def) {
-        var obj = dict[key] || (dict[key] = {value:def});
-        obj.deps = obj.deps || [];
-        return obj;
+        return dict[key] = _fn.val(_fn.Either({value:def, deps:[]}, dict[key]));
     }
 
     global.Session = {

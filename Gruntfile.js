@@ -24,10 +24,7 @@ module.exports = function(grunt) {
                 options: {
                     specs: 'spec/**/*Spec.js',
                     helpers: 'spec/*Helper.js',
-                    vendor: [
-                        "vendor/lodash.js",
-                        'vendor/underscore-fn.min.js'
-                    ]
+                    vendor: 'vendor/*.js'
                 }
             }
         }
